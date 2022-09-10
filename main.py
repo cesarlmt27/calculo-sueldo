@@ -1,26 +1,22 @@
-import csv
+from read import *
 
-afp= 0.1
-comision_salud = 0.07
-seguro_cesantia_ind = 0.006
-
-
+#Solicitar sueldo bruto.
+print("Ingrese sueldo bruto: ")
 sueldo_bruto = float(input())
-cafp = input()
+
+#Solicitar administradora AFP.
+print("Seleccione administradora AFP: ")
+adm_afp = input()
 
 
-administradora_afp = {}
-
-with open('csv/administradora_afp.csv', 'r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            administradora_afp[row[0]] = row[1]
+comision_afp = float(administradoras_afp[adm_afp])  #Declarar valor de la comisión de la administradora AFP.
 
 
-comision_afp = float(administradora_afp[cafp])
+def calcular_sueldo_imponible(sueldo_bruto, dp_fijos, comision_afp):
+    descuentos_provisionales = sueldo_bruto * (dp_fijos['AFP'] + comision_afp + dp_fijos['CS'] + dp_fijos['SC'])
+    sueldo_imponible = sueldo_bruto - descuentos_provisionales
+    return round(sueldo_imponible, 2)
 
-descuentos_provisionales = sueldo_bruto * (afp + comision_afp + comision_salud + seguro_cesantia_ind)
 
-sueldo_imponible = sueldo_bruto - descuentos_provisionales
-
-print(round(sueldo_imponible, 2))
+sueldo_imponible = calcular_sueldo_imponible(sueldo_bruto, dp_fijos, comision_afp)
+print(sueldo_imponible)
