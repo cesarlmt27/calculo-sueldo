@@ -1,8 +1,17 @@
 from read import *
 
 #Solicitar sueldo líquido.
-#print("Ingrese sueldo líquido: ")
-sueldo_liquido = 4015447.57 #float(input())
+while True:
+    sueldo_liquido = input("Ingrese sueldo líquido: ")
+    try:
+        val = float(sueldo_liquido)
+        if val < 0:
+            print("Solo se puede ingresar valores numéricos positivos.")
+            continue
+        sueldo_liquido = round(float(sueldo_liquido), 2)
+        break
+    except ValueError:
+        print("Solo se puede ingresar valores numéricos positivos.")
 
 #Solicitar administradora AFP.
 #print("Seleccione administradora AFP: ")
@@ -19,7 +28,7 @@ if(contrato == 'fijo'):
 
 
 for i in tabla_sl:  #Recorrer cada lista de la lista "tabla_sl"
-    if(sueldo_liquido > float(i[0]) and sueldo_liquido < float(i[1])):  #Verificar el rango donde se encuentra el sueldo liquido obtenido.
+    if(sueldo_liquido >= float(i[0]) and sueldo_liquido <= float(i[1])):  #Verificar el rango donde se encuentra el sueldo liquido obtenido.
         factor = float(i[2])       #Declarar el factor del rango donde se encuentra el sueldo liquido.
         descuento = float(i[3])    #Declarar el descuento del rango donde se encuentra el sueldo liquido.
 

@@ -1,8 +1,17 @@
 from read import *
 
 #Solicitar sueldo bruto.
-#print("Ingrese sueldo bruto: ")
-sueldo_bruto = 5363550.01 #float(input())
+while True:
+    sueldo_bruto = input("Ingrese sueldo bruto: ")
+    try:
+        val = float(sueldo_bruto)
+        if val < 0:
+            print("Solo se puede ingresar valores numéricos positivos.")
+            continue
+        sueldo_bruto = round(float(sueldo_bruto), 2)
+        break
+    except ValueError:
+        print("Solo se puede ingresar valores numéricos positivos.")
 
 #Solicitar administradora AFP.
 #print("Seleccione administradora AFP: ")
@@ -28,7 +37,7 @@ sueldo_imponible = calcular_sueldo_imponible(sueldo_bruto, dp_fijos, comision_af
 
 
 for i in tabla_si:  #Recorrer cada lista de la lista "tabla_si"
-    if(sueldo_imponible > float(i[0]) and sueldo_imponible < float(i[1])):  #Verificar el rango donde se encuentra el sueldo imponible obtenido.
+    if(sueldo_imponible >= float(i[0]) and sueldo_imponible <= float(i[1])):  #Verificar el rango donde se encuentra el sueldo imponible obtenido.
         factor = float(i[2])       #Declarar el factor del rango donde se encuentra el sueldo imponible.
         descuento = float(i[3])    #Declarar el descuento del rango donde se encuentra el sueldo imponible.
 
