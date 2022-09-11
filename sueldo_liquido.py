@@ -8,8 +8,14 @@ sueldo_bruto = 5363550.01 #float(input())
 #print("Seleccione administradora AFP: ")
 adm_afp = 'AFP Capital' #input()
 
-
 comision_afp = float(administradoras_afp[adm_afp])  #Declarar valor de la comisión de la administradora AFP.
+
+#Solicitar tipo de contrato.
+#print("Seleccione tipo de contrato: ")
+contrato = 'indefinido' #input()
+
+if(contrato == 'fijo'):
+    dp_fijos['SC'] = 0
 
 
 def calcular_sueldo_imponible(sueldo_bruto, dp_fijos, comision_afp):

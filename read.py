@@ -24,3 +24,13 @@ with open('csv/tabla_si.csv', 'r') as file:
             tabla_si.append(row)
 
 tabla_si.pop(0) #Eliminar primer elemento de la lista.
+
+
+#Leer y almacenar las filas de "tabla_sl.csv" en una lista.
+tabla_sl = []
+with open('csv/tabla_sl.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            tabla_sl.append(row)
+
+tabla_sl.pop(0) #Eliminar primer elemento de la lista.
