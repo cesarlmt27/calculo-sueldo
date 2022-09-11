@@ -17,7 +17,7 @@ while True:
 #print("Seleccione administradora AFP: ")
 adm_afp = 'AFP Capital' #input()
 
-comision_afp = float(administradoras_afp[adm_afp])  #Declarar valor de la comisión de la administradora AFP.
+comision_afp = administradoras_afp[adm_afp]  #Declarar valor de la comisión de la administradora AFP.
 
 #Solicitar tipo de contrato.
 #print("Seleccione tipo de contrato: ")
