@@ -5,7 +5,7 @@ def inputs(sueldo_liquido, adm_afp, contrato):
         sueldo_liquido = round(float(sueldo_liquido), 2)
         if(sueldo_liquido < 0):
             return "error"
-    except ValueError:  #Error que se genera al no puder convertir en "float" la variable.
+    except ValueError:  #Error que se genera al no poder convertir en "float" la variable.
         return "error"
 
     if(isinstance(adm_afp, str) and adm_afp in administradoras_afp):
