@@ -1,44 +1,29 @@
 from read import *
 
-def inputs():
-    #Solicitar sueldo bruto.
-    while True:
-        sueldo_bruto = input("Ingrese sueldo bruto: ")
-        try:
-            val = float(sueldo_bruto)
-            if val < 0:
-                print("Solo se puede ingresar valores numéricos positivos.")
-                continue
-            sueldo_bruto = round(float(sueldo_bruto), 2)
-            break
-        except ValueError:
-            print("Solo se puede ingresar valores numéricos positivos.")
+def inputs(sueldo_bruto, adm_afp, contrato):
+    try:
+        sueldo_bruto = round(float(sueldo_bruto), 2)
+        if(sueldo_bruto < 0):
+            exit()
+    except ValueError:  #Error que se genera al no puder convertir en "float" la variable.
+        exit()
+    
+    if(isinstance(adm_afp, str) and adm_afp in administradoras_afp):
+        comision_afp = administradoras_afp[adm_afp]  #Declarar valor de la comisión de la administradora AFP.
+    else:
+        exit()
 
-    #Solicitar administradora AFP.
-    while True:
-        print("Seleccione administradora AFP: ")
-        for i in administradoras_afp:
-            print(i)
+    if(isinstance(contrato, str) and contrato == "Contrato a plazo fijo"):
+        dp_fijos['SC'] = 0
+    elif(isinstance(contrato, str) and contrato == "Indefinido"):
+        pass
+    else:
+        exit()
 
-        adm_afp = input()
-        
-        if(adm_afp in administradoras_afp):
-            comision_afp = administradoras_afp[adm_afp]  #Declarar valor de la comisión de la administradora AFP.
-            break
+    sueldo_imponible = calcular_sueldo_imponible(sueldo_bruto, comision_afp)
+    sueldo_liquido = calcular_sueldo_liquido(sueldo_imponible)
 
-    #Solicitar tipo de contrato.
-    while True:
-        print("Seleccione tipo de contrato: ")
-        print("Contrato indefinido")
-        print("Contrato a plazo fijo")
-        contrato = input()
-        if(contrato == "Contrato indefinido"):
-            break
-        elif(contrato == "Contrato a plazo fijo"):
-            dp_fijos['SC'] = 0
-            break
-
-    return sueldo_bruto, comision_afp
+    return sueldo_liquido
 
 
 def calcular_sueldo_imponible(sueldo_bruto, comision_afp):
@@ -55,4 +40,7 @@ def calcular_sueldo_liquido(sueldo_imponible):
 
     impuestos_legales = sueldo_imponible * factor - descuento
     sueldo_liquido = sueldo_imponible - impuestos_legales
-    return round(sueldo_liquido, 2)
+    
+    sueldo_liquido = "${:,.2f}".format(sueldo_liquido)
+
+    return sueldo_liquido
