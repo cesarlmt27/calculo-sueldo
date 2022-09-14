@@ -3,22 +3,22 @@ from read import *
 def inputs(sueldo_liquido, adm_afp, contrato):
     try:
         sueldo_liquido = round(float(sueldo_liquido), 2)
-        if(sueldo_liquido< 0):
-            exit()
+        if(sueldo_liquido < 0):
+            return "error"
     except ValueError:  #Error que se genera al no puder convertir en "float" la variable.
-        exit()
+        return "error"
 
     if(isinstance(adm_afp, str) and adm_afp in administradoras_afp):
         comision_afp = administradoras_afp[adm_afp]  #Declarar valor de la comisión de la administradora AFP.
     else:
-        exit()
+        return "error"
 
     if(isinstance(contrato, str) and contrato == "Contrato a plazo fijo"):
         dp_fijos['SC'] = 0
-    elif(isinstance(contrato, str) and contrato == "Indefinido"):
+    elif(isinstance(contrato, str) and contrato == "Contrato indefinido"):
         pass
     else:
-        exit()
+        return "error"
 
     sueldo_imponible = calcular_sueldo_imponible(sueldo_liquido)
     sueldo_bruto = calcular_sueldo_bruto(sueldo_imponible, comision_afp)

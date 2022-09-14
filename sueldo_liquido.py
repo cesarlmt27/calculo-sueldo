@@ -4,21 +4,21 @@ def inputs(sueldo_bruto, adm_afp, contrato):
     try:
         sueldo_bruto = round(float(sueldo_bruto), 2)
         if(sueldo_bruto < 0):
-            exit()
+            return "error"
     except ValueError:  #Error que se genera al no puder convertir en "float" la variable.
-        exit()
+        return "error"
     
     if(isinstance(adm_afp, str) and adm_afp in administradoras_afp):
         comision_afp = administradoras_afp[adm_afp]  #Declarar valor de la comisión de la administradora AFP.
     else:
-        exit()
+        return "error"
 
     if(isinstance(contrato, str) and contrato == "Contrato a plazo fijo"):
         dp_fijos['SC'] = 0
-    elif(isinstance(contrato, str) and contrato == "Indefinido"):
+    elif(isinstance(contrato, str) and contrato == "Contrato indefinido"):
         pass
     else:
-        exit()
+        return "error"
 
     sueldo_imponible = calcular_sueldo_imponible(sueldo_bruto, comision_afp)
     sueldo_liquido = calcular_sueldo_liquido(sueldo_imponible)
