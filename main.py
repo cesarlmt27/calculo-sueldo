@@ -8,10 +8,10 @@ while True:
     consulta = int(input())
 
     if consulta == 0:
-        sueldo_liquido = sl.inputs(3724678.85, "AFP Capital", "Indefinido")
+        sueldo_liquido = sl.inputs(3724678.85, "AFP Capital", "Contrato indefinido")
         print(sueldo_liquido)
         break
     elif consulta == 1:
-        sueldo_bruto = sb.inputs(2879199.40, "AFP Capital", "Indefinido")
+        sueldo_bruto = sb.inputs(2879199.40, "AFP Capital", "Contrato indefinido")
         print(sueldo_bruto)
         break
