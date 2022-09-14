@@ -12,12 +12,12 @@ def main_win():
 
 def liquido_win():
     layout = [
-        [sg.Text("Ingresar sueldo bruto", key="sueldo_bruto")],
+        [sg.Text("Ingrese sueldo bruto (sin separador de miles y con un punto como separador decimal)", key="sueldo_bruto")],
         [sg.Input(key="-INPUT1-")],
         [sg.Text(key="-OUTPUT1-", visible=False)],
-        [sg.Text('Tipo AFP',size=(20, 1), font='Lucida',justification='left')],
+        [sg.Text('Administradora AFP',justification='left')],
         [sg.Combo(['AFP Capital','AFP Cuprum','AFP Habitat', 'AFP Modelo','AFP Planvital','AFP Provida','AFP Uno'],default_value='AFP Capital',key='AFP')],
-        [sg.Text('Tipo Contrato',size=(30, 1), font='Lucida',justification='left')],
+        [sg.Text('Tipo de contrato',justification='left')],
         [sg.Combo(['Contrato indefinido','Contrato a plazo fijo'],default_value='Contrato indefinido',key='contrato')],
         [sg.Button("Calcular", key="-BTN1-")]
     ]
@@ -25,13 +25,12 @@ def liquido_win():
 
 def bruto_win():
     layout = [
-        [sg.Text("Ingresar sueldo liquido", key="sueldo_liquido")],
+        [sg.Text("Ingrese sueldo líquido (sin separador de miles y con un punto como separador decimal)", key="sueldo_liquido")],
         [sg.Input(key="-INPUT2-")],
         [sg.Text(key="-OUTPUT2-", visible=False)],
-        [sg.Text('Escoja su AFP',size=(20, 1), font='Lucida',justification='left')],
-        [sg.Text('Tipo AFP',size=(20, 1), font='Lucida',justification='left')],
+        [sg.Text('Administradora AFP',justification='left')],
         [sg.Combo(['AFP Capital','AFP Cuprum','AFP Habitat', 'AFP Modelo','AFP Planvital','AFP Provida','AFP Uno'],default_value='AFP Capital',key='AFP')],
-        [sg.Text('Tipo Contrato',size=(30, 1), font='Lucida',justification='left')],
+        [sg.Text('Tipo de contrato',justification='left')],
         [sg.Combo(['Contrato indefinido','Contrato a plazo fijo'],default_value='Contrato indefinido',key='contrato')],
         [sg.Button("Calcular", key="-BTN2-")]
     ]
@@ -58,12 +57,12 @@ while True:
         window2 = bruto_win()
     elif event == "-BTN1-":
         if (sl.inputs(values["-INPUT1-"], values["AFP"],values["contrato"])) == "error":
-           sg.popup("Error en los datos ingresados", "intente nuevamente ")
+           sg.popup("Error en los datos ingresados.", "Intente nuevamente.")
         else:
            sg.popup("El sueldo liquido es: ",sl.inputs(values["-INPUT1-"], values["AFP"],values["contrato"]) )     
     elif event == "-BTN2-":
         if (sb.inputs(values["-INPUT2-"], values["AFP"],values["contrato"])) == "error":
-           sg.popup("Error en los datos ingresados", "intente nuevamente ")
+           sg.popup("Error en los datos ingresados.", "Intente nuevamente.")
         else:
            sg.popup("El sueldo bruto es: ",sb.inputs(values["-INPUT2-"], values["AFP"],values["contrato"]) )
 window.close()
